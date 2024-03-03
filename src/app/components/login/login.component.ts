@@ -23,6 +23,8 @@ export class LoginComponent {
     private _Router: Router,
     public dialog: MatDialog
   ) {}
+  
+
 
   passwordShow: boolean = false;
 
@@ -35,6 +37,72 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern(/^\w{6,}$/)]],
     });
+
+    this.animation();
+  }
+
+
+
+  animation(){
+    let btn=document.querySelector('.btn');
+let h:any=document.querySelector('h2');
+let content:any=h.innerHTML;
+let cont:any=content;
+let xx=0;
+
+function loop(){
+
+   if(xx%2==0){
+      
+      cont="Hello Rout Academy";
+   }else{
+      cont="I am Front End Develoer"; 
+     
+   }
+}
+
+
+function start(cont:any){
+   console.log(cont)
+   content=cont;
+   let c=0;
+   let sum='';
+   let x=setInterval(function(){
+   sum+=content[c];
+   if(content[c]==undefined){
+      clearInterval(x);
+      end();
+      }
+if(content[c]!=undefined)
+    h.innerHTML=sum;
+      c++;
+   },100);
+}
+start(cont);
+
+function end(){
+  
+   xx++;
+   loop();
+   console.log(xx);
+   console.log(cont);
+   let e=setInterval(function(){
+    if(h.innerHTML!=''){  
+      content= content.slice(0,content.length-1);
+      h.innerHTML=content;
+     }
+    else{
+      clearInterval(e)
+start(cont)
+     }
+  },100);
+}
+
+
+
+
+// ===========================================================================
+
   }
 
   public get f(): {
